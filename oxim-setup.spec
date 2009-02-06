@@ -18,6 +18,8 @@ BuildRequires:  libglade2-devel
 BuildRequires:  libgnomeprint-devel
 BuildRequires:  curl-devel
 BuildRequires:  qt3-devel
+Requires:	oxim >= 1.2.1
+Conflicts:	oxim < 1.2.1
 
 %description
 OXIM Setup Tool.
