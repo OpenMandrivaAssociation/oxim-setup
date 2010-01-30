@@ -1,4 +1,4 @@
-%define version      1.2.2
+%define version      1.4.1
 %define release      %mkrel 1
 
 Summary:	OXIM setup tool
@@ -11,11 +11,8 @@ URL:		http://opendesktop.org.tw/demopage/oxim/
 Source0:	ftp://140.111.128.66/odp/OXIM/Source/%{name}-%{version}.tar.gz
 Patch0:		oxim-setup-1.2.1-fix-str-fmt.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:	gtk+2-devel
 BuildRequires:  oxim-devel >= 1.2.1
-BuildRequires:  libxpm-devel
-BuildRequires:  libglade2-devel
-BuildRequires:  libgnomeprint-devel
+BuildRequires:	gtk+2-devel
 BuildRequires:  curl-devel
 BuildRequires:  qt3-devel
 Requires:	oxim >= 1.2.1
