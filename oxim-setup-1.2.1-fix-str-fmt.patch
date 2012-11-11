@@ -1,0 +1,60 @@
+--- src/oxim-setup-gtk-1.1.7/src/g_oxim_conf.c.str	2009-02-06 16:08:24.000000000 -0500
++++ src/oxim-setup-gtk-1.1.7/src/g_oxim_conf.c	2009-02-06 16:08:32.000000000 -0500
+@@ -735,7 +735,7 @@
+   if(error !=NULL)
+   {
+ 	g_printf("(%s:%d)[%s()] Error! g_dir_open(\"%s\",0,&error) \n", __FILE__, __LINE__, __func__, tables_dir);
+-	g_print(error->message);
++	g_print("%s",error->message);
+ 	g_clear_error(&error);	
+ 	g_dir_curdir_pop();
+ 	return FALSE;
+--- src/oxim-setup-gtk-1.1.7/src/installim.c.str	2009-02-06 16:07:52.000000000 -0500
++++ src/oxim-setup-gtk-1.1.7/src/installim.c	2009-02-06 16:08:14.000000000 -0500
+@@ -1591,7 +1591,7 @@
+ 	read = g_io_channel_new_file(pf, "r", &error);
+ 	if(error!=NULL)
+ 	{
+-		g_print(error->message);
++		g_print("%s",error->message);
+ 		g_clear_error(&error);
+ 		return;
+ 	}
+@@ -1665,7 +1665,7 @@
+ 	{
+ 	  //connect_status("");
+ 	  gchar url[200];
+-	  g_sprintf(url,g_getenv("EXTERNAL_DOWNLOAD_URL"));
++	  g_sprintf(url,"%s",g_getenv("EXTERNAL_DOWNLOAD_URL"));
+ 	  g_utf8_str_assign(ftp_baseurl,url); //ftp_baseurl is a global variable that will be used when download im file.
+ 	  g_utf8_str_append(url,"/cin.list");
+ 	  static gchar pf[100];
+--- src/oxim-setup-gtk-1.1.7/src/main.c.str	2009-02-06 16:07:03.000000000 -0500
++++ src/oxim-setup-gtk-1.1.7/src/main.c	2009-02-06 16:07:42.000000000 -0500
+@@ -598,7 +598,7 @@
+     if(error != NULL)
+     {
+ 	g_printf("(%s:%d)[%s()] Error! g_dir_open(\"%s\",0,&error) \n", __FILE__, __LINE__, __func__, hot_fp);
+-	g_print(error->message);
++	g_print("%s",error->message);
+ 	g_clear_error(&error);	
+ 	g_dir_curdir_pop();
+ 	//return FALSE;
+@@ -643,7 +643,7 @@
+     if(error != NULL)
+     {
+ 	g_printf("(%s:%d)[%s()] Error! g_dir_open(\"%s\",0,&error) \n", __FILE__, __LINE__, __func__, toth_fp);
+-	g_print(error->message);
++	g_print("%s",error->message);
+ 	g_clear_error(&error);	
+ 	g_dir_curdir_pop();
+ 	//return FALSE;
+@@ -2562,7 +2562,7 @@
+ 	  GDir* gdir = g_dir_open(filepath, 0,&error);
+ 	  if(error!=NULL)
+ 	  {
+-		g_print(error->message);
++		g_print("%s",error->message);
+ 		g_clear_error(&error);
+ 	  }
+ 	  else

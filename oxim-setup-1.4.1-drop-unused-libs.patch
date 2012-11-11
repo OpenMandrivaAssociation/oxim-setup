@@ -1,0 +1,68 @@
+--- configure.ac.libs	2009-11-04 07:40:12.000000000 +0100
++++ configure.ac	2010-01-31 04:41:09.000000000 +0100
+@@ -112,33 +112,9 @@
+ AC_CHECK_LIB(oxim, oxim_version, [ found=y ], [ AC_MSG_ERROR([require liboxim missing]) ])
+ 
+ #-----------------------------------------------------------------------
+-# Check for XPM support
++# Check for libxml2 lib
+ #-----------------------------------------------------------------------
+-PKG_CHECK_MODULES(XPM, xpm >= 2.0.0, use_xpm="yes", use_xpm="no")
+-if test "$use_xpm" = "no" ; then
+-    AC_CHECK_HEADERS([X11/xpm.h], [use_xpm="yes"], [use_xpm="no"])
+-    if test "$use_xpm" = "yes" ; then
+-	XPM_CFLAGS=""
+-	AC_SUBST(XPM_CFLAGS)
+-	XPM_LIBS="-lX11 -lXpm"
+-	AC_SUBST(XPM_LIBS)
+-    else
+-	AC_MSG_ERROR([required XPM header file missing])
+-    fi
+-fi
+-
+-#-----------------------------------------------------------------------
+-# Check for libglade support
+-#-----------------------------------------------------------------------
+-PKG_CHECK_MODULES(GLADE, libglade-2.0 >= 2.0, use_libglade="yes", use_libglade="no")
+-if test "$use_libglade" = "yes" ; then
+-	GLADE_CFLAGS=`$PKG_CONFIG --cflags libglade-2.0 gtk+-2.0 gmodule-2.0 glib-2.0 libxml-2.0 gobject-2.0` 
+-	GLADE_LIBS=`$PKG_CONFIG --libs libglade-2.0 gtk+-2.0 gmodule-2.0 glib-2.0 libxml-2.0 gobject-2.0`
+-	AC_SUBST(GLADE_CFLAGS)
+-	AC_SUBST(GLADE_LIBS)
+-else
+-	AC_MSG_ERROR([required libglade missing])
+-fi
++PKG_CHECK_MODULES(LIBXML2, libxml-2.0)
+ 
+ #-----------------------------------------------------------------------
+ # Check for curl support
+@@ -157,14 +133,6 @@
+ fi
+ 
+ #-----------------------------------------------------------------------
+-# Check for Xft support
+-#-----------------------------------------------------------------------
+-PKG_CHECK_MODULES(XFT, xft >= 2.0, use_xft="yes", use_xft="no")
+-if test "$use_xft" = "no" ; then
+-    AC_MSG_ERROR([oxim need libxft, but not found or version too old.])
+-fi
+-
+-#-----------------------------------------------------------------------
+ #  Check for Gtk2 Library ***
+ #-----------------------------------------------------------------------
+ AC_ARG_ENABLE([gtk-immodule],
+--- src/oxim-setup-gtk-1.1.7/Makefile.am.old	2010-01-31 04:41:45.000000000 +0100
++++ src/oxim-setup-gtk-1.1.7/Makefile.am	2010-01-31 04:42:09.000000000 +0100
+@@ -3,10 +3,10 @@
+ bin_PROGRAMS = oxim-setup-gtk
+ 
+ INCLUDES = -Iinclude/ \
+-	   $(GTK2_CFLAGS) $(GLADE_CFLAGS) $(CURL_CFLAGS) \
++	   $(GTK2_CFLAGS) $(LIBXML2_CFLAGS) $(CURL_CFLAGS) \
+ 	   -g -c -DINSTALLATION_LEVEL
+ 
+-LIBS += $(GTK2_LIBS) $(GLADE_LIBS) $(CURL_LIBS)
++LIBS += $(GTK2_LIBS) $(LIBXML2_LIBS) $(CURL_LIBS)
+ 
+ oxim_setup_gtk_SOURCES = src/main.c \
+ 		     src/chewing.c \
