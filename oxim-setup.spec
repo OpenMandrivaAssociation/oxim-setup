@@ -7,7 +7,7 @@ Version:	%{version}
 Release:	%{release}
 License:	GPLv2+
 Group:		System/Internationalization
-URL:		http://opendesktop.org.tw/demopage/oxim/
+URL:		https://opendesktop.org.tw/demopage/oxim/
 Source0:	ftp://140.111.128.66/odp/OXIM/Source/%{name}-%{version}.tar.gz
 Patch0:		oxim-setup-1.2.1-fix-str-fmt.patch
 Patch1:		oxim-setup-1.4.1-drop-unused-libs.patch
